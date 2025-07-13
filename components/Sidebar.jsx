@@ -12,6 +12,7 @@ export default function Sidebar({ expand, setExpand }) {
 
     const {openSignIn} = useClerk();
     const {user} = useAppContext();
+    const [openMenu, setOpenMenu] = useState({id:0,open:false})
     return (
         <div
             className={`h-screen bg-[#202123] text-white px-4 py-6 transition-all duration-300 flex flex-col justify-between ${expand ? "w-64" : "w-16"
@@ -60,7 +61,7 @@ export default function Sidebar({ expand, setExpand }) {
 
                     <div className={`mt-8 text-white/25 text-sm ${expand ? "block" : "hidden"}`}>
                         <p className="my-1">Recents</p>
-                        <ChatLabel/>
+                        <ChatLabel openMenu={openMenu} setOpenMenu={setOpenMenu}/>
                     </div>
                 </div>
             </div>
@@ -127,5 +128,5 @@ function SidebarItem({ icon, label, expand, isPrimary = false }) {
             {icon && <Image src={icon} alt={label} className="w-5 h-5" />}
             {expand && <span className="text-sm font-medium">{label}</span>}
         </div>
-    );
+   );
 }
